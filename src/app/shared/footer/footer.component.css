@@ -1,0 +1,26 @@
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    padding: 8px;
+    background-color: #098094;
+}
+
+.footerList {
+    list-style-type: none;
+    display: inline;
+    padding: 0px;
+}
+
+.footerElement{
+    display: inline;
+    padding-top: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.gitIcon{
+    height: 35px;
+}
