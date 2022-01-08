@@ -1,11 +1,35 @@
 export interface BarInterface{
+    title: string,
+    dataSetName: string,
+    xValues: number[],
+    yValues: number[],
+    dataSetColor: string,
+    textdataSetColor: string,
+    labelsXColor: string,
+    gridXColor: string,
+    labelsYColor: string,
+    gridYColor: string
+}
+
+
+
+
+
+
+
+
+
+//old way
+
+/*
+export interface BarInterface{
     data: Data,
     options: Options
 
 }
 
 export interface Data{
-    labels: string[] | number[],
+    labels: number[], // | string[] 
     datasets: Datasets[]
 }
 
@@ -54,3 +78,6 @@ export interface Thicks{
 export interface Grid{
     color: string
 }
+
+
+*/

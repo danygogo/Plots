@@ -1,1 +1,77 @@
-<p>bar-form works!</p>
+<div class= "myFormContainer">
+    <h2>My data</h2>
+    <div>
+        <form [formGroup] = "myForm" (ngSubmit)="setValues()">
+            <label>Chart title:</label>
+            <input type="text" formControlName = "title">
+            <br>
+            <label>Dataset name</label>
+            <input type="text" formControlName = "dataSetName">
+            <br>
+
+            <label>Points quantity:</label>
+            <input type="number" formControlName = "pointsQuantity" min="1">
+            <br>
+            <button type= "button" (click)="addDataAndStyles()">Add</button>
+            <br>
+
+ 
+
+            <div *ngIf="valuesSelected">
+                <label >Values on X axis</label>
+                <div formArrayName = "xValues" *ngFor="let item of xValues.controls; let j = index">
+                    <label >value {{j + 1}}</label>
+                    <input type="number" [formControlName]="j">
+                </div>
+                
+
+                <label >Values on Y axis</label>
+                <div formArrayName = "yValues" *ngFor="let item of yValues.controls; let j = index">
+                    <label >value {{j + 1}}</label>
+                    <input type="number" [formControlName]="j">
+                </div>
+
+                <label >dataSetColor:</label>
+                <input type="color" formControlName="dataSetColor">
+                <br>
+
+                <label >textdataSetColor</label>
+                <input type="color" formControlName="textdataSetColor">
+                <br>
+
+                <label >labelsXColor</label>
+                <input type="color" formControlName="labelsXColor">
+                <br>
+
+                <label >gridXColor</label>
+                <input type="color" formControlName="gridXColor">
+                <br>
+
+                <label >labelsYColor</label>
+                <input type="color" formControlName="labelsYColor">
+                <br>
+
+                <label >gridYColor</label>
+                <input type="color" formControlName="gridYColor">
+                <br>
+            </div>
+
+            <button type="submit">Save</button>
+
+
+            
+
+        </form>
+        <br>
+        <br>
+
+        <h2>Form's information</h2>
+        <h5>Values</h5>
+        <pre>{{myForm.value | json}}</pre>
+
+        <h5>Is valid</h5>
+        <pre>{{myForm.valid}}</pre>
+        <br>
+        <br>
+    </div>
+</div>
