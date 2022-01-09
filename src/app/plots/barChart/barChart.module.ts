@@ -7,6 +7,9 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { BarFormComponent } from './components/bar-form/bar-form.component';
 import { ChartModule } from 'primeng/chart';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PrimeNgModule } from '../../PrimeNgModule/prime-ng.module';
+import { InfoComponent } from './components/info/info.component';
+
 
 
 
@@ -15,13 +18,15 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     BarPageComponent,
     BarChartComponent,
-    BarFormComponent
+    BarFormComponent,
+    InfoComponent
   ],
   imports: [
     CommonModule,
     PlotsRoutingModule,
     ChartModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PrimeNgModule
   ]
 })
 export class PlotsModule { }

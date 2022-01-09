@@ -1,4 +1,8 @@
 import { NgModule } from '@angular/core';
+import {DialogModule} from 'primeng/dialog';
+import {ButtonModule} from 'primeng/button';
+
+
 
 
 
@@ -6,7 +10,8 @@ import { NgModule } from '@angular/core';
 @NgModule({
 
   exports: [
-
+    DialogModule,
+    ButtonModule,
   ]
 })
 export class PrimeNgModule { }

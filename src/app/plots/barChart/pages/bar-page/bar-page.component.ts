@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BarInterface } from '../../interfaces/bar-interface';
 
 @Component({
   selector: 'app-bar-page',
@@ -10,6 +11,14 @@ export class BarPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  myChart!: BarInterface
+  //acá se puede hacer un arreglo  en lugar de ese objeto 
+
+  addChart(myChart: BarInterface){
+    this.myChart = myChart
+    //acá también se puede hacer un push para agregar diferentes valores
   }
 
 }

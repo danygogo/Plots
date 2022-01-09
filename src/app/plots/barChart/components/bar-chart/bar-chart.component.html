@@ -1,8 +1,15 @@
 
-
-<div class="chartContainer">
-    <div class="card">
-        <h5>Vertical</h5>
-        <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+<div *ngIf="myChart">
+    <div class="chartContainer">
+        <div class="card">
+            <h5 *ngIf="title">{{title}}</h5>
+            <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+        </div>
     </div>
 </div>
+
+<div *ngIf="!myChart">
+    <p>No data </p>
+</div>
+
+

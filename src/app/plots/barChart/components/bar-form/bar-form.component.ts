@@ -1,39 +1,46 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EventEmitter } from '@angular/core';
 import { BarInterface } from '../../interfaces/bar-interface';
+import { BarService } from '../../services/bar.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { PrimeNGConfig } from 'primeng/api';
 
 
 @Component({
   selector: 'app-bar-form',
   templateUrl: './bar-form.component.html',
-  styleUrls: ['./bar-form.component.css']
+  styleUrls: ['./bar-form.component.css'],
 })
 export class BarFormComponent implements OnInit, OnChanges {
   
   dataSetQuantity: number = 1;
   pointsQuantity: number = 1;
   valuesSelected: boolean = false;
+  display: boolean = false;
+  element: string = "";
+
+  @Output() newChart: EventEmitter<BarInterface> = new EventEmitter();
 
 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private primengConfig: PrimeNGConfig) { }
 
   ngOnInit(): void {
-    console.log("OnInit")
+    this.primengConfig.ripple = true;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    
-    console.log("OnChanges")
   }
 
   
 
   myForm: FormGroup = this.fb.group({
     //single values
-    title: [, Validators.required],
-    pointsQuantity: [, [Validators.required, Validators.min(1)]],
-    dataSetName: [, Validators.required],
+    title: ["Test Chart"],
+    pointsQuantity: [3, [Validators.required, Validators.min(1)]],
+    dataSetName: ["women", Validators.required],
 
     //arrays
     xValues: this.fb.array([["", Validators.required],], Validators.required),
@@ -41,7 +48,7 @@ export class BarFormComponent implements OnInit, OnChanges {
     
 
     //single values
-    dataSetColor: ["#E07B28"],
+    dataSetColor: ["#24C5E0", Validators.required],
     textdataSetColor: ["#000000", Validators.required],
     labelsXColor: ["#000000", Validators.required],
     gridXColor: ['#ebedef', Validators.required],
@@ -71,7 +78,7 @@ export class BarFormComponent implements OnInit, OnChanges {
   
 
   addDataAndStyles(){
-    if( this.myForm.controls.pointsQuantity.valid ){
+    if( this.myForm.controls.pointsQuantity.valid && this.myForm.controls.dataSetName.valid ){
       this.valuesSelected = true;
       this.pointsQuantity = this.myForm.controls.pointsQuantity.value;
 
@@ -81,13 +88,22 @@ export class BarFormComponent implements OnInit, OnChanges {
 
 
     for (let i = 0; i < this.pointsQuantity -1; i++) {
-      this.xValues.push(this.fb.control(''));
+      this.xValues.push(this.fb.control('', Validators.required));
     }
 
     for (let i = 0; i < this.pointsQuantity -1; i++) {
-      this.yValues.push(this.fb.control(''));
+      this.yValues.push(this.fb.control('', Validators.required));
     }
   }
+
+
+  addRow(){
+    this.xValues.push(this.fb.control('', Validators.required));
+    this.yValues.push(this.fb.control('', Validators.required));
+  }
+
+
+
   setValues(){
     if(this.myForm.valid){
 
@@ -104,22 +120,30 @@ export class BarFormComponent implements OnInit, OnChanges {
         labelsYColor: this.myForm.controls.labelsYColor.value,
         gridYColor: this.myForm.controls.gridYColor.value,
       }
-      console.log(myChart)
+      
+      this.newChart.emit(myChart)
+
     }else
     {
       return
     }
   }
 
+  deleteRow(j: number){
+    this.yValues.removeAt(j)
+    this.xValues.removeAt(j)
 
-  
- 
+  }
+
+  showDialog(element: string) {
+    this.element = element
+    this.display = true;
+    console.log(this.element)
+}
+
   
 
 }//End of the class
 
 
 
-/* 
-  
- */

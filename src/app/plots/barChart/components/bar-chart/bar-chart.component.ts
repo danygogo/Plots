@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AppConfig } from 'src/app/plots/interfaces/interfaces';
-import { AppConfigServiceService } from 'src/app/plots/services/app-config-service.service';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { BarService } from '../../services/bar.service';
+import { BarInterface } from '../../interfaces/bar-interface';
 
 
 
@@ -10,32 +10,26 @@ import { AppConfigServiceService } from 'src/app/plots/services/app-config-servi
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.css']
 })
-export class BarChartComponent implements OnInit {
+export class BarChartComponent implements OnInit, OnChanges {
 
-  basicData: any;
+    @Input() myChart!: BarInterface 
 
-  basicOptions: any;
+    basicData: any;
+    basicOptions: any;
+    title: string = ""
 
-  constructor(private configService: AppConfigServiceService) {}
 
-  ngOnInit() {
-        this.basicData = {
-            labels: [1, 2.5, 3, 4, 5, 6, 7],
-            datasets: [
-                {
-                  label: 'My First dataset',
-                  backgroundColor: '#42A5F5',
-                  data: [20, 20, 20, 81, 56, 55, 100]
-                },
-                {
-                  label: 'My Second dataset',
-                  backgroundColor: '#FFA726',
-                  data: [28, 48, 40, 19, 86, 27, 90]
-                }
-            ]
-        };
+    constructor() {}
 
-        this.gridColors()
+    ngOnInit() {
+    }//end of ngOnInit
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if(this.myChart){
+            console.log(this.myChart)
+            this.createChart()
+        }
+        
     }
 
 
@@ -44,31 +38,63 @@ export class BarChartComponent implements OnInit {
             plugins: {
                 legend: {
                     labels: {
-                        color: '#495057' //legend labels
+                        color: this.myChart.textdataSetColor //legend labels
                     }
                 }
             },
             scales: { 
                 x: {
                     ticks: {
-                        color: '#495057'  //labelsin x axis
+                        color: this.myChart.labelsXColor  //labelsin x axis
                     },
                     grid: {
-                        color: '#ebedef' //vertical grid lines
+                        color: this.myChart.gridXColor //vertical grid lines
                     }
                 },
                 y: {
                     ticks: {
-                        color: '#495057' //numbers in y axis
+                        color: this.myChart.labelsYColor //numbers in y axis
                     },
                     grid: {
-                        color: '#ebedef' //horizontal grid lines
+                        color: this.myChart.gridYColor //horizontal grid lines
                     }
                 }
             }
         };
       
+    }//End of gridColors
+
+
+    createChart(){
+
+        if(this.myChart.title){
+            this.title = this.myChart.title;
+        }else{
+            this.title = ""
+        }
+        
+
+        this.basicData = {
+            labels: this.myChart.xValues,
+            datasets: [
+                {
+                  label: this.myChart.dataSetName,
+                  backgroundColor: this.myChart.dataSetColor,
+                  data: this.myChart.yValues
+                }
+            ]
+        };
+
+        this.gridColors()
     }
+
+
+    temporalButton(){
+        
+    }
+
 }
+
+
 
 
