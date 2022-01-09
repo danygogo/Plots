@@ -1,5 +1,4 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { BarService } from '../../services/bar.service';
 import { BarInterface } from '../../interfaces/bar-interface';
 
 

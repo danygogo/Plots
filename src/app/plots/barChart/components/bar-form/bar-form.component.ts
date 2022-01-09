@@ -2,8 +2,6 @@ import { Component, OnChanges, OnInit, Output, SimpleChanges } from '@angular/co
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
 import { BarInterface } from '../../interfaces/bar-interface';
-import { BarService } from '../../services/bar.service';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { PrimeNGConfig } from 'primeng/api';
 
 
