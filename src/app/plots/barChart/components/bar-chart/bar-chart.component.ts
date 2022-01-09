@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { BarInterface } from '../../interfaces/bar-interface';
+import { DataSet } from '../../interfaces/bar-interface';
 
 
 
@@ -15,20 +16,21 @@ export class BarChartComponent implements OnInit, OnChanges {
 
     basicData: any;
     basicOptions: any;
-    title: string = ""
+    title: string = "";
 
 
     constructor() {}
 
     ngOnInit() {
+
+        
     }//end of ngOnInit
 
     ngOnChanges(changes: SimpleChanges): void {
         if(this.myChart){
-            console.log(this.myChart)
+
             this.createChart()
         }
-        
     }
 
 
@@ -75,22 +77,14 @@ export class BarChartComponent implements OnInit, OnChanges {
 
         this.basicData = {
             labels: this.myChart.xValues,
-            datasets: [
-                {
-                  label: this.myChart.dataSetName,
-                  backgroundColor: this.myChart.dataSetColor,
-                  data: this.myChart.yValues
-                }
-            ]
+            datasets: [this.myChart.dataSet]
         };
 
         this.gridColors()
     }
 
 
-    temporalButton(){
-        
-    }
+
 
 }
 

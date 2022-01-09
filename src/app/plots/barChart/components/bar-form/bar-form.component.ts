@@ -1,7 +1,7 @@
 import { Component, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
-import { BarInterface } from '../../interfaces/bar-interface';
+import { BarInterface, DataSet } from '../../interfaces/bar-interface';
 import { PrimeNGConfig } from 'primeng/api';
 
 
@@ -105,20 +105,24 @@ export class BarFormComponent implements OnInit, OnChanges {
   setValues(){
     if(this.myForm.valid){
 
+      const dataSet: DataSet = {
+        label: this.myForm.controls.dataSetName.value,
+        backgroundColor: this.myForm.controls.dataSetColor.value,
+        data: this.myForm.controls.yValues.value,
+      }
+
       const myChart: BarInterface = 
       {
         title: this.myForm.controls.title.value,
-        dataSetName: this.myForm.controls.dataSetName.value,
         xValues: this.myForm.controls.xValues.value,
-        yValues: this.myForm.controls.yValues.value,
-        dataSetColor: this.myForm.controls.dataSetColor.value,
         textdataSetColor: this.myForm.controls.textdataSetColor.value,
         labelsXColor: this.myForm.controls.labelsXColor.value,
         gridXColor: this.myForm.controls.gridXColor.value,
         labelsYColor: this.myForm.controls.labelsYColor.value,
         gridYColor: this.myForm.controls.gridYColor.value,
+        dataSet: dataSet
       }
-      
+
       this.newChart.emit(myChart)
 
     }else

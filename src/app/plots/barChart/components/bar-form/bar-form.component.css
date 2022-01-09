@@ -44,7 +44,7 @@
 .deleteButton{
     background-color: #42E4FF;
     border: none;
-    height: 30px;
+    min-height: 30px;
     color: black;
     border-radius: 10px;
 }

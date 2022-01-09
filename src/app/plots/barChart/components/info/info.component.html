@@ -42,10 +42,15 @@
     <p>This color will be used in the vertical lines of your chart. Pick white if you don't want to see them.</p>
 </div>
 
+<div *ngIf="element == 'horizontalLines'">
+    <h5>Horizontal lines' color</h5>
+    <p>This color will be used in the horizontal lines of your chart. Pick white if you don't want to see them.</p>
+</div>
+
 <div *ngIf="element == 'table'">
     <h5>Quantitative information</h5>
     <p>In this table you have to add the data that will fill the chart. Write down the values that you want in x-axis 
         (vertically), for example, if you are working with the women's results in 3 different days then write down 1, 2 and 3. </p>
     <p>Fill in the same way (vertically) the values for the y-axis, in our example, you should write down the women's results.</p>
-    <p>All the fields are required</p>
+    <p>All the fields are required.</p>
 </div>
