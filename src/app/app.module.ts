@@ -8,6 +8,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -19,6 +19,7 @@ export class BarPageComponent implements OnInit {
 
   addChart(myChart: BarInterface){
     this.myChart = myChart
+    this.myChartsArr.push(myChart)
     //acá también se puede hacer un push para agregar diferentes valores
   }
 
