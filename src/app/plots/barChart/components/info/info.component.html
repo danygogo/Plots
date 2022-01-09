@@ -1,0 +1,51 @@
+<div *ngIf="element == 'title'">
+    <h5>Title</h5>
+    <p>The title will appear at the top of your chart. It is optional.</p>
+</div>
+
+<div *ngIf="element == 'datasetname'">
+    <h5>Dataset name</h5>
+    <p>It is the name that you will add to your serie, for example, if you will draw the results for the behavior 
+        of women and men in some activity, you could write "women" or "men" in the data set name.</p>
+    <p>This information is requiered.</p>
+</div>
+
+<div *ngIf="element == 'pointsquantity'">
+    <h5>Quantity of points</h5>
+    <p>This value is the quantity of measures that you have, for example, if you what to show the women's results 
+        in three diferent days then write 3.</p>
+    <p>This information is requiered and the minimun is 1.</p>
+</div>
+
+<div *ngIf="element == 'barcolor'">
+    <h5>Bar's color</h5>
+    <p>Pick the color and your bar will be this color.</p>
+</div>
+
+<div *ngIf="element == 'labelsTextColor'">
+    <h5>Text color for labels</h5>
+    <p>This is the color that will appear on the name of your dataset, it will be at the top of your chart.</p>
+</div>
+
+<div *ngIf="element == 'labelsXColor'">
+    <h5>Labels' color on x axis</h5>
+    <p>This color will be used on the numbers on x-axis.</p>
+</div>
+
+<div *ngIf="element == 'labelsYColor'">
+    <h5>Labels' color on y axis</h5>
+    <p>This color will be used on the numbers on y-axis.</p>
+</div>
+
+<div *ngIf="element == 'verticalLines'">
+    <h5>Vertical lines' color</h5>
+    <p>This color will be used in the vertical lines of your chart. Pick white if you don't want to see them.</p>
+</div>
+
+<div *ngIf="element == 'table'">
+    <h5>Quantitative information</h5>
+    <p>In this table you have to add the data that will fill the chart. Write down the values that you want in x-axis 
+        (vertically), for example, if you are working with the women's results in 3 different days then write down 1, 2 and 3. </p>
+    <p>Fill in the same way (vertically) the values for the y-axis, in our example, you should write down the women's results.</p>
+    <p>All the fields are required</p>
+</div>
