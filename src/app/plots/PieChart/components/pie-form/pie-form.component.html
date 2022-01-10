@@ -1,5 +1,8 @@
 <div class= "myFormContainer">
-    <h2>My data</h2>
+
+    <h2>Pie Chart   <i class="pi pi-chart-pie" style="font-size: 2rem"></i></h2> 
+<br>
+    <h5>My data:</h5>
     <div>
         <form [formGroup] = "myForm" (ngSubmit)="setValues()">
             <div class="row subtitle">
@@ -27,15 +30,18 @@
             
             <div class="row inputContainer">
                 <div class="col-4">
-                    <label>Quantity of points:</label>
+                    <label>Number of observations:</label>
                 </div>
                 <div class="col-4">
-                    <input type="number" class = "styleInput" formControlName = "pointsQuantity" min="1">
+                    <input type="number" class = "styleInput" formControlName = "pointsQuantity" min="1" placeholder="write a number" (click)="resetValid()">
                 </div>
                 <div class="col-4">
                     <button class = "infoButton" type="button" (click)="showDialog('pointsquantity')"><i class="pi pi-info-circle"></i></button>
                 </div>
             </div>
+            <p class="form-text text-danger" *ngIf="checkForm('pointsQuantity') || validQuantity == false">
+                Please write a number greater than or equal to one 
+            </p>
             
             <button class = "mainButton" type= "button" (click)="addDataAndStyles()" *ngIf="!valuesSelected">Set chart's content</button>
 
@@ -56,14 +62,14 @@
                     <div class="col">
                         <table>
                             <tr>
-                                <th>Labels<i class="pi pi-arrow-down"></i> </th>
+                                <th>Names<i class="pi pi-arrow-down"></i> </th>
                                 <th>Values<i class="pi pi-arrow-down"></i></th>
                                 <th>Color</th>
                                 <th></th>
                             </tr>
                             <tr *ngFor="let item of labels.controls; let j = index">
-                                <td formArrayName = "labels"><input type="text" class = "styleInput" [formControlName]="j"></td>
-                                <td formArrayName = "data"><input type="number" class = "styleInput" [formControlName]="j"></td>
+                                <td formArrayName = "labels"><input type="text" class = "styleInput" [formControlName]="j" placeholder="write a name"></td>
+                                <td formArrayName = "data"><input type="number" class = "styleInput" [formControlName]="j" placeholder="write a number"></td>
                                 <td formArrayName = "backgroundColor"><input type="color"  [formControlName]="j"></td>
                                 <td><button class= "deleteButton" (click)="deleteRow(j)">Delete <i class="pi pi-minus-circle"></i></button></td>
                             </tr>
@@ -71,63 +77,36 @@
                     </div>
                     <br>
                 </div>
+                
 
                 <div class="row">
                     <div class="col addRowContainer">
                         <button class= "addButton" (click)="addRow()">Add row <i class="pi pi-plus-circle"></i></button>
                     </div>
                 </div> 
-                
-
-
-
-                <div class="row subtitle">
-                    <div class="col-8">
-                        <label><b>Chart Styles</b></label>
-                    </div>
-                    <div class="col"></div>
-                </div>
-
-
-                <div class="row inputContainer">
-                    <div class="col-4">
-                        <label >Color:</label>
-                    </div>
-                    <div class="col-2">
-                        <input class= "colorInput" type="color" formControlName="color">
-                    </div>
-                    <div class="col-2">
-                        <button class = "infoButton" type="button" (click)="showDialog('barcolor')"><i class="pi pi-info-circle"></i></button>
-                    </div>
-                    <div class="col">
-                    </div>
-                </div>
+                <p class="form-text text-danger" *ngIf="checkLabels()">
+                    Please write a name for every number
+                </p>
+                <p class="form-text text-danger" *ngIf=checkData()>
+                    Please write a number in all the fields for this purpose. It must be greater than or equal to 0
+                </p>
+                <p class="form-text text-danger" *ngIf="formValid == false">
+                    Please fill correctly all the information
+                </p>
 
                 <button class = "applyButton" type="submit">
                     Apply changes <i class="pi pi-check-circle"></i>
                 </button>
             </div>
-
-        
         </form>
-
-<br>
-<br>
     </div>
 </div>
 
 <br>
 <br>
-<h5>Values</h5>
-<pre>{{myForm.value | json}}</pre>
-<br>
-<h5>is valid</h5>
-<pre>{{myForm.valid}}</pre>
 
-<br>
-<br>
 
-<p-dialog [(visible)]="display"  [modal]="true" position="top-left" [style]="{width: '50vw'}" >
+<p-dialog [(visible)]="display"  [modal]="true" position="top-left" [style]="{width: '40vw'}" >
     <app-info-pie [element] = "element"></app-info-pie>
 </p-dialog>
 

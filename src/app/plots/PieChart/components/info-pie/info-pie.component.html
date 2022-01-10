@@ -1,1 +1,18 @@
-<p>info-pie works!</p>
+<div *ngIf="element == 'title'">
+    <h5>Title</h5>
+    <p>The title will appear at the top of your chart. It is optional.</p>
+</div>
+
+<div *ngIf="element == 'pointsquantity'">
+    <h5>Number of observations</h5>
+    <p>It is the number of elements or observations that you want to add to your chart. For example, if you want to represent in the chart the number of women and men in your chart, then write 2</p>
+    <p>this value is requiered and the minimun is 1.</p>
+</div>
+
+<div *ngIf="element == 'table'">
+    <h5>Table</h5>
+    <p>In the table below you have to add your data. For every type of data you have to add the values vertically, for example if you are showing the number of the men and women in your class, then write vertically "men" and "women". Do the same for the other data.</p>
+    <p>The numbers must be greater than or equal to zero.</p>
+    <p>Pick different colors for each data.</p>
+    <p>All the fields are required.</p>
+</div>

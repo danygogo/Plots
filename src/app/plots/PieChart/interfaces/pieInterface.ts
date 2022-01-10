@@ -1,7 +1,6 @@
 export interface PieInterface{
     dataSet:PieDataSet,
     labels: string[],
-    color: string,
     title: string
 }
 

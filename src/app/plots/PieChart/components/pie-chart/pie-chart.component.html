@@ -1,6 +1,12 @@
+
+<div class="row" *ngIf="title">
+    <div class="col">
+        <h3>{{title}}</h3>
+    </div>
+</div>
 <div class="row">
     <div class="col-4"></div>
-    <div class="col-4"><p-chart type="pie" [data]="data"  [style]="{'width': '8%'}"></p-chart></div>
+    <div class="col-4"><p-chart type="pie" [data]="data" ></p-chart></div>
     <div class="col-4"></div>
 </div>
 

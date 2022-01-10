@@ -14,6 +14,8 @@ export class PieFormComponent implements OnInit {
   valuesSelected: boolean = false;
   display: boolean = false;
   element: string = "";
+  formValid: boolean = true
+  validQuantity: boolean = true
 
   constructor(private fb: FormBuilder, private pieService: PieService) { }
 
@@ -22,14 +24,12 @@ export class PieFormComponent implements OnInit {
 
   myForm: FormGroup = this.fb.group({
     //single values
-    title: ["Test Chart"],
-    pointsQuantity: [1, [Validators.required, Validators.min(1)]],
-    color: ['#ebedef', Validators.required],
-
+    title: [],
+    pointsQuantity: [, [Validators.required, Validators.min(1)]],
 
     //arrays
     labels: this.fb.array([["", Validators.required],], Validators.required),
-    data: this.fb.array([["", Validators.required],], Validators.required),
+    data: this.fb.array([["", Validators.required],], [Validators.required, Validators.min(0)]),
     backgroundColor: this.fb.array([["#24C5E0", Validators.required],], Validators.required),
     
   })
@@ -58,13 +58,15 @@ export class PieFormComponent implements OnInit {
         this.pointsQuantity = this.myForm.controls.pointsQuantity.value;
   
       }else{
+        this.validQuantity = false
         return
       }
   
   
       for (let i = 0; i < this.pointsQuantity -1; i++) {
-        this.data.push(this.fb.control('', Validators.required));
-        this.backgroundColor.push(this.fb.control('#E07B28', Validators.required));
+        const color = this.createColor()
+        this.data.push(this.fb.control('', [Validators.required]));
+        this.backgroundColor.push(this.fb.control(color, Validators.required));
         this.labels.push(this.fb.control('', Validators.required));
       }
 
@@ -72,8 +74,9 @@ export class PieFormComponent implements OnInit {
   
   
     addRow(){
-      this.data.push(this.fb.control('', Validators.required));
-      this.backgroundColor.push(this.fb.control('#098094', Validators.required));
+      const color: string = this.createColor()
+      this.data.push(this.fb.control('', [Validators.required ]));
+      this.backgroundColor.push(this.fb.control(color, Validators.required));
       this.labels.push(this.fb.control('', Validators.required));
     }
   
@@ -81,6 +84,7 @@ export class PieFormComponent implements OnInit {
   
     setValues(){
       if(this.myForm.valid){
+        this.formValid = true;
   
         const dataSet: PieDataSet = {
           backgroundColor: this.myForm.controls.backgroundColor.value,
@@ -91,7 +95,6 @@ export class PieFormComponent implements OnInit {
         {
           title: this.myForm.controls.title.value,
           labels: this.myForm.controls.labels.value,
-          color: this.myForm.controls.color.value,
           dataSet: dataSet
         }
   
@@ -99,6 +102,7 @@ export class PieFormComponent implements OnInit {
   
       }else
       {
+        this.formValid = false
         return
       }
     }
@@ -114,6 +118,25 @@ export class PieFormComponent implements OnInit {
       this.display = true;
     }
   
+    checkForm(campo: string){
+      return this.myForm.controls[campo].errors && this.myForm.controls[campo].touched
+    }
 
+    resetValid(){
+      this.validQuantity = true
+    }
+
+    checkLabels(){
+      return this.myForm.controls.labels.status == "INVALID" && this.myForm.controls.labels.touched
+    }
+    
+    checkData(){
+      return this.myForm.controls.data.status == "INVALID" && this.myForm.controls.data.touched
+    }
+
+    createColor(): string{
+      const color = "#xxxxxx".replace(/x/g, y=>(Math.random()*16|0).toString(16));
+      return color;
+    }
 
 }
