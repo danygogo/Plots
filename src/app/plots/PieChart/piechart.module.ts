@@ -6,7 +6,9 @@ import { PiePageComponent } from './pages/pie-page/pie-page.component';
 import { PieFormComponent } from './components/pie-form/pie-form.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { InfoPieComponent } from './components/info-pie/info-pie.component';
-import { PieComponent } from './services/pie/pie.component';
+import { ChartModule } from 'primeng/chart';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PrimeNgModule } from '../../PrimeNgModule/prime-ng.module';
 
 
 @NgModule({
@@ -14,12 +16,14 @@ import { PieComponent } from './services/pie/pie.component';
     PiePageComponent,
     PieFormComponent,
     PieChartComponent,
-    InfoPieComponent,
-    PieComponent
+    InfoPieComponent
   ],
   imports: [
     CommonModule,
-    PiechartRoutingModule
+    PiechartRoutingModule,
+    ChartModule,
+    ReactiveFormsModule,
+    PrimeNgModule
   ]
 })
 export class PiechartModule { }

@@ -9,8 +9,12 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: "charts",
+    path: "bar",
     loadChildren: () => import('./plots/barChart/barChart.module').then(m => m.PlotsModule)
+  },
+  {
+    path: "pie",
+    loadChildren: () => import('./plots/PieChart/piechart.module').then(m => m.PiechartModule)
   },
   {
     path: "**",

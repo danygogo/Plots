@@ -1,1 +1,133 @@
-<p>pie-form works!</p>
+<div class= "myFormContainer">
+    <h2>My data</h2>
+    <div>
+        <form [formGroup] = "myForm" (ngSubmit)="setValues()">
+            <div class="row subtitle">
+                <div class="col-8">
+                    <label><b>General information</b></label>
+                </div>
+                <div class="col"></div>
+            </div>
+
+            
+            <div class="row inputContainer">
+                <div class="col-4">
+                    <label>Chart title:</label>
+                </div>
+                <div class="col-4">
+                    <input class = "styleInput" type="text" formControlName = "title" placeholder="Your title">
+                </div>
+                <div class="col-4">
+                    <button class = "infoButton" type="button" (click)="showDialog('title')"><i class="pi pi-info-circle"></i></button>
+                </div>
+            </div>
+
+
+
+            
+            <div class="row inputContainer">
+                <div class="col-4">
+                    <label>Quantity of points:</label>
+                </div>
+                <div class="col-4">
+                    <input type="number" class = "styleInput" formControlName = "pointsQuantity" min="1">
+                </div>
+                <div class="col-4">
+                    <button class = "infoButton" type="button" (click)="showDialog('pointsquantity')"><i class="pi pi-info-circle"></i></button>
+                </div>
+            </div>
+            
+            <button class = "mainButton" type= "button" (click)="addDataAndStyles()" *ngIf="!valuesSelected">Set chart's content</button>
+
+
+
+            
+            <!--table-->
+            <div *ngIf="valuesSelected">
+
+                <div class="row subtitle">
+                    <div class="col-8">
+                        <label><b>Chart data   </b><button class = "infoButton" type="button" (click)="showDialog('table')"><i class="pi pi-info-circle"></i></button></label>
+                    </div>
+                    <div class="col"></div>
+                </div>
+
+                <div class="row tableContainer">
+                    <div class="col">
+                        <table>
+                            <tr>
+                                <th>Labels<i class="pi pi-arrow-down"></i> </th>
+                                <th>Values<i class="pi pi-arrow-down"></i></th>
+                                <th>Color</th>
+                                <th></th>
+                            </tr>
+                            <tr *ngFor="let item of labels.controls; let j = index">
+                                <td formArrayName = "labels"><input type="text" class = "styleInput" [formControlName]="j"></td>
+                                <td formArrayName = "data"><input type="number" class = "styleInput" [formControlName]="j"></td>
+                                <td formArrayName = "backgroundColor"><input type="color"  [formControlName]="j"></td>
+                                <td><button class= "deleteButton" (click)="deleteRow(j)">Delete <i class="pi pi-minus-circle"></i></button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                </div>
+
+                <div class="row">
+                    <div class="col addRowContainer">
+                        <button class= "addButton" (click)="addRow()">Add row <i class="pi pi-plus-circle"></i></button>
+                    </div>
+                </div> 
+                
+
+
+
+                <div class="row subtitle">
+                    <div class="col-8">
+                        <label><b>Chart Styles</b></label>
+                    </div>
+                    <div class="col"></div>
+                </div>
+
+
+                <div class="row inputContainer">
+                    <div class="col-4">
+                        <label >Color:</label>
+                    </div>
+                    <div class="col-2">
+                        <input class= "colorInput" type="color" formControlName="color">
+                    </div>
+                    <div class="col-2">
+                        <button class = "infoButton" type="button" (click)="showDialog('barcolor')"><i class="pi pi-info-circle"></i></button>
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+
+                <button class = "applyButton" type="submit">
+                    Apply changes <i class="pi pi-check-circle"></i>
+                </button>
+            </div>
+
+        
+        </form>
+
+<br>
+<br>
+    </div>
+</div>
+
+<br>
+<br>
+<h5>Values</h5>
+<pre>{{myForm.value | json}}</pre>
+<br>
+<h5>is valid</h5>
+<pre>{{myForm.valid}}</pre>
+
+<br>
+<br>
+
+<p-dialog [(visible)]="display"  [modal]="true" position="top-left" [style]="{width: '50vw'}" >
+    <app-info-pie [element] = "element"></app-info-pie>
+</p-dialog>
+

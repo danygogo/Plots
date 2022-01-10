@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-info-pie',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./info-pie.component.css']
 })
 export class InfoPieComponent implements OnInit {
+
+  @Input() element: string = ""
 
   constructor() { }
 
