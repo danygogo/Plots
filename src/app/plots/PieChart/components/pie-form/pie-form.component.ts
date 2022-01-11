@@ -108,9 +108,15 @@ export class PieFormComponent implements OnInit {
     }
   
     deleteRow(j: number){
-      this.data.removeAt(j)
-      this.backgroundColor.removeAt(j)
-      this.labels.removeAt(j)
+      if(this.data.length > 1){
+        this.data.removeAt(j)
+        this.backgroundColor.removeAt(j)
+        this.labels.removeAt(j)
+      }
+      else{
+        return
+      }
+      
     }
   
     showDialog(element: string) {
