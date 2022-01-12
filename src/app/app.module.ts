@@ -24,6 +24,10 @@ import { HeaderComponent } from './shared/header/header.component';
     BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[
+    FooterComponent,
+    HeaderComponent
+  ]
 })
 export class AppModule { }
