@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { PdfService } from 'src/app/plots/services/pdf.service';
 import { BarInterface } from '../../interfaces/bar-interface';
 import { DataSet } from '../../interfaces/bar-interface';
 
@@ -17,9 +18,10 @@ export class BarChartComponent implements OnInit, OnChanges {
     basicData: any;
     basicOptions: any;
     title: string = "";
+    addTable: boolean= false
 
 
-    constructor() {}
+    constructor(private pdfService: PdfService) {}
 
     ngOnInit() {
 
@@ -81,6 +83,17 @@ export class BarChartComponent implements OnInit, OnChanges {
         };
 
         this.gridColors()
+    }
+
+
+    showTable(){
+        this.addTable==true? this.addTable=false : this.addTable=true;    
+    }
+
+
+    public openPDF():void {  
+        let report: HTMLElement = document.getElementById('reportContainer')!;
+        this.pdfService.createPDF(report)   
     }
 
 

@@ -1,15 +1,67 @@
 
-<div *ngIf="myChart">
-    <div class="chartContainer">
-        <div class="card">
-            <h5 *ngIf="title">{{title}}</h5>
-            <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
-        </div>
+<div class="myReportContainer">
+    <h2>Your report   <i class="pi pi-file" style="font-size: 2rem"></i></h2> 
+    <div class = "row" *ngIf="!myChart">
+        <div class="col infoContainer"><p>The chart will appear here when you send the data</p></div>
     </div>
+
+    <div id = "reportContainer">
+        <div *ngIf="myChart">
+            <div class="chartContainer">
+                <div class="card">
+                    <h5 *ngIf="title">{{title}}</h5>
+                    <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+                </div>
+            </div>
+        </div>
+
+        <!--table-->
+        <div *ngIf="addTable" >
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Point</th>
+                    <th scope="col"><i>x</i>-axis Values</th>
+                    <th scope="col"><i>y</i>-axis Values</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of myChart.xValues; index as i">
+                    <th scope="row">{{i + 1}}</th>
+                    <td>{{myChart.xValues[i]}}</td>
+                    <td>{{myChart.dataSet.data[i]}}</td>
+                    </tr>
+                </tbody>
+                </table>
+        </div>
+
+    </div> <!--End of report container-->
+
+    <div class="row optionsContainer" *ngIf="myChart">
+        <div class="col-3"></div>
+        <div  class="col-3">
+            <div class="form-check">
+                <input class="form-check-input" (click)="showTable()" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Add a table with my data
+                </label>
+          </div>
+        </div> 
+
+        <div class="col-3">
+            <button class="downloadButton" (click)="openPDF()">Download PDF</button>
+        </div>
+        <div class="col-3"></div>
+            
+    </div>
+
+    <br>
+    <br>
+
+    
 </div>
 
-<div *ngIf="!myChart">
-    <p>No data </p>
-</div>
+
+
 
 

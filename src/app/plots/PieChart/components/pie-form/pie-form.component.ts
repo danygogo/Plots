@@ -124,8 +124,8 @@ export class PieFormComponent implements OnInit {
       this.display = true;
     }
   
-    checkForm(campo: string){
-      return this.myForm.controls[campo].errors && this.myForm.controls[campo].touched
+    checkForm(field: string){
+      return this.myForm.controls[field].errors && this.myForm.controls[field].touched
     }
 
     resetValid(){

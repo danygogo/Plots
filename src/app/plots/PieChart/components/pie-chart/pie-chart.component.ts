@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PieService } from '../../services/pie.service';
 import { PieInterface } from '../../interfaces/pieInterface';
 import { Subscription } from 'rxjs';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+import { PdfService } from '../../../services/pdf.service';
+
 
 
 @Component({
@@ -20,7 +20,8 @@ export class PieChartComponent implements OnInit, OnDestroy{
   percentages: number[] = []
 
 
-  constructor(private pieService: PieService) { }
+  constructor(private pieService: PieService,
+              private pdfService: PdfService) { }
 
   ngOnInit() {
     this.myPieSubscription = this.pieService.data$.subscribe(resp =>{
@@ -72,21 +73,9 @@ export class PieChartComponent implements OnInit, OnDestroy{
   
 
   //PDF 
-  public openPDF():void {  //https://rawgit.com/MrRio/jsPDF/master/docs/module-addImage.html#~addImage
-    let report = document.getElementById('reportContainer')!;
-        
-      html2canvas(report).then(canvas => {
-          
-          let fileWidth = 208;
-          let fileHeight = canvas.height * fileWidth / canvas.width;
-          let position = 0;
-          
-          const FILEURI = canvas.toDataURL('image/png')
-          let PDF = new jsPDF('p', 'mm', 'a4');
-          PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
-          
-          PDF.save('piechart.pdf');
-      });     
-    }
+  public openPDF():void {  
+    let report: HTMLElement = document.getElementById('reportContainer')!;
+    this.pdfService.createPDF(report)   
+  }
 
 }

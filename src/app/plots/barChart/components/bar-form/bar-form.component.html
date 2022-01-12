@@ -1,6 +1,6 @@
 <div class= "myFormContainer">
     <h2>Bar Chart   <i class="pi pi-chart-bar" style="font-size: 2rem"></i></h2> 
-    <h2>My data</h2>
+    <h4>My data</h4>
     
     <div>
         <form [formGroup] = "myForm" (ngSubmit)="setValues()">
@@ -36,24 +36,33 @@
                     <label>Dataset name:</label>
                 </div>
                 <div class="col-4">
-                    <input type="text" class = "styleInput" formControlName = "dataSetName">
+                    <input type="text" class = "styleInput" formControlName = "dataSetName" placeholder="Write a name">
                 </div>
                 <div class="col-4">
                     <button class = "infoButton" type="button" (click)="showDialog('datasetname')"><i class="pi pi-info-circle"></i></button>
                 </div>
             </div>
+            <p class="form-text text-danger" 
+                *ngIf="checkForm('dataSetName') || (myForm.controls.dataSetName.value == null && invalidData==true)"
+                (click)="invalidData = false">
+                Please write a dataset name
+            </p>
             
             <div class="row inputContainer">
                 <div class="col-4">
                     <label>Quantity of points:</label>
                 </div>
                 <div class="col-4">
-                    <input type="number" class = "styleInput" formControlName = "pointsQuantity" min="1">
+                    <input type="number" class = "styleInput" formControlName = "pointsQuantity" min="1" placeholder="Write a number">
                 </div>
                 <div class="col-4">
                     <button class = "infoButton" type="button" (click)="showDialog('pointsquantity')"><i class="pi pi-info-circle"></i></button>
                 </div>
             </div>
+            <p class="form-text text-danger" *ngIf="checkForm('pointsQuantity') || (myForm.controls.pointsQuantity.value == null && invalidData==true && !myForm.controls.pointsQuantity.touched)"
+            >
+                Please write the quantity of points you need
+            </p>
             
             <button class = "mainButton" type= "button" (click)="addDataAndStyles()" *ngIf="!valuesSelected">Set chart's content</button>
 
@@ -71,9 +80,9 @@
                             </tr>
                             <tr *ngFor="let item of xValues.controls; let j = index">
                                 <td >Point {{j + 1}}</td>
-                                <td formArrayName = "xValues"><input type="number" class = "styleInput" [formControlName]="j"></td>
-                                <td formArrayName = "yValues"><input type="number" class = "styleInput" [formControlName]="j"></td>
-                                <td><button class= "deleteButton" (click)="deleteRow(j)">Delete <i class="pi pi-minus-circle"></i></button></td>
+                                <td formArrayName = "xValues"><input type="number" class = "styleInput" [formControlName]="j" (keyup)="confirmInvalidTable()"></td>
+                                <td formArrayName = "yValues"><input type="number" class = "styleInput" [formControlName]="j" (keyup)="confirmInvalidTable()"></td>
+                                <td><button type = "button" class= "deleteButton" (click)="deleteRow(j)">Delete <i class="pi pi-minus-circle"></i></button></td>
                             </tr>
                         </table>
                     </div>
@@ -85,6 +94,10 @@
                         <button class= "addButton" (click)="addRow()">Add row <i class="pi pi-plus-circle"></i></button>
                     </div>
                 </div> 
+                <p class="form-text text-danger" *ngIf="invalidTable"
+                >
+                    Please fill the table with the required numbers
+                </p>
                 
 
 

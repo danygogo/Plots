@@ -17,6 +17,9 @@ export class BarFormComponent implements OnInit, OnChanges {
   valuesSelected: boolean = false;
   display: boolean = false;
   element: string = "";
+  invalidData: boolean = false;
+  invalidTable: boolean = false;
+
 
   @Output() newChart: EventEmitter<BarInterface> = new EventEmitter();
 
@@ -36,9 +39,9 @@ export class BarFormComponent implements OnInit, OnChanges {
 
   myForm: FormGroup = this.fb.group({
     //single values
-    title: ["Test Chart"],
-    pointsQuantity: [3, [Validators.required, Validators.min(1)]],
-    dataSetName: ["women", Validators.required],
+    title: [""],
+    pointsQuantity: [, [Validators.required, Validators.min(1)]],
+    dataSetName: [, [Validators.required]],
 
     //arrays
     xValues: this.fb.array([["", Validators.required],], Validators.required),
@@ -81,6 +84,7 @@ export class BarFormComponent implements OnInit, OnChanges {
       this.pointsQuantity = this.myForm.controls.pointsQuantity.value;
 
     }else{
+      this.invalidData = true;
       return
     }
 
@@ -103,7 +107,9 @@ export class BarFormComponent implements OnInit, OnChanges {
 
 
   setValues(){
+    
     if(this.myForm.valid){
+      this.invalidTable = false;
 
       const dataSet: DataSet = {
         label: this.myForm.controls.dataSetName.value,
@@ -127,24 +133,40 @@ export class BarFormComponent implements OnInit, OnChanges {
 
     }else
     {
+      if(this.myForm.controls.xValues.status == "INVALID" || this.myForm.controls.yValues.status == "INVALID"){
+        this.invalidTable = true;
+      }
       return
     }
   }
 
   deleteRow(j: number){
-    this.yValues.removeAt(j)
-    this.xValues.removeAt(j)
+    if(this.yValues.length>1){
+      this.yValues.removeAt(j)
+      this.xValues.removeAt(j)
+    }
+    else{
+      
+      return
+    }
 
   }
 
   showDialog(element: string) {
     this.element = element
     this.display = true;
-    console.log(this.element)
+  }
+
+checkForm(field: string){
+  return this.myForm.controls[field].errors && this.myForm.controls[field].touched
 }
 
-  
+confirmInvalidTable(){
+  if(this.invalidTable = true && this.myForm.controls.xValues.status == "VALID" && this.myForm.controls.yValues.status == "VALID"){
+    this.invalidTable = false;
+  }
 
+}
 }//End of the class
 
 
