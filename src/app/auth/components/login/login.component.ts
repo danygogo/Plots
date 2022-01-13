@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { userInterface } from '../../interfaces/userInterface';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -36,10 +37,14 @@ export class LoginComponent implements OnInit {
               console.log("entra al if")
               this.router.navigateByUrl("/application/home");
             }else{
-              console.log("entra al else")
-              console.log(resp)
+              Swal.fire(
+                {
+                  title: 'Invalid user',
+                  text: resp,
+                  icon: 'error',
+                  confirmButtonColor: '#DB592A'
+                })
             }
-      
           }
         )
 

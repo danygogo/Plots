@@ -35,7 +35,7 @@ body
 	left: 25%;
 	border: 2px solid #fff;
 	box-shadow: 0 15px 40px rgba(0,0,0,.5);
-	z-index: 9999;
+	z-index: 50;
 	border: 0px;
 }
 .container .left
@@ -122,7 +122,7 @@ body
 	.container
 	{
 		width: 80%;
-		max-height: 400px;
+		max-height: 470px;
 		left: 10%;
 		border: 0px;
 	}
@@ -132,7 +132,7 @@ body
 	.container
 	{
 		width: 80%;
-		height: 480px;
+		height: 470px;
 		left: 10%;
 		top: 20%;
 		border: 0px;
@@ -155,7 +155,7 @@ body
 	{
 		position: absolute;
 		opacity: .8;
-		width: 100%;
+		width: 95%;
 		padding: 10%;
 		box-sizing: border-box;
 	}
