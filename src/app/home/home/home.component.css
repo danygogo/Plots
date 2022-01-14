@@ -1,23 +1,75 @@
 
-.divUp{
-    background-image: url("../../../assets/1.jpg");
+.divBackground{
+    background-image: url("../../../assets/6.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
-    
     width: 100%;
-
     height:90vh;
-    
-    opacity: 0.5;
+    opacity: 1;
     z-index: 0;
     position: fixed;
 }
 
 .divContainer{
-    float: left;
-    z-index: 999;
-
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    text-align: center;
+    top: 30%;
     color: black;
 }
 
+
+h1{
+    background-color: rgba(255, 255, 255, 0.698);
+    border: none;
+    padding: 2%;
+    font-size: 3.5em;
+    margin: 0px;
+}
+
+.buttonContainer{
+
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    text-align: center;
+    top: 60%;
+    color: black;
+}
+
+
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 2em;
+    margin: 20px;
+    padding: 0.5em;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.698);
+}
+
+
+@media screen and (max-width: 500px) {
+    .buttonContainer{
+        top: 70%;
+    }
+
+    h1{
+        font-size: 2em;
+    }
+
+    .divContainer{
+        top: 40%;
+    }
+
+    a{
+        display: block;
+        font-size: 1.2em;
+    }
+
+    .buttonContainer{
+        top: 60%;
+    }
+}
