@@ -12,22 +12,26 @@ import { of } from 'rxjs';
 export class AuthService {
 
   private baseURL: string = environment.baseURL
-  private uid!: string
 
-  get userID(){
-    return this.uid;
+
+
+  userName(): string{
+    let name: string = sessionStorage.getItem("name")!
+    return name
   }
 
   constructor(private http: HttpClient) { }
 
 
   login(user: userInterface){
-    const url: string = environment.baseURL
-    return this.http.post<requestResponse>(`${url}/login`, user).pipe(
+
+    sessionStorage.clear();
+    
+    return this.http.post<requestResponse>(`${this.baseURL}/login`, user).pipe(
       tap(resp =>{
         if(resp.ok){
-          sessionStorage.setItem(resp.uid!, resp.name!);
-          this.uid = resp.uid!;
+
+          sessionStorage.setItem("name", resp.name!);
         }
       }),
       map(result => {
@@ -38,12 +42,13 @@ export class AuthService {
   }
 
   createUser(user: userInterface){
-    const url: string = environment.baseURL
-    return this.http.post<requestResponse>(`${url}/new`, user).pipe(
+
+    sessionStorage.clear();
+
+    return this.http.post<requestResponse>(`${this.baseURL}/new`, user).pipe(
       tap(resp => {
           if(resp.ok){
-            this.uid = resp.uid!;
-            sessionStorage.setItem(resp.uid!, resp.name!)
+            sessionStorage.setItem("name", resp.name!)
           }
         }),
         map(
