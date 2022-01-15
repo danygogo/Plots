@@ -73,8 +73,6 @@ export class BarFormComponent implements OnInit, OnChanges {
 
 
 
-  //**************************************************METHODS**************************************************
-
  
   
 

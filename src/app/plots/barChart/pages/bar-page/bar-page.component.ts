@@ -15,12 +15,11 @@ export class BarPageComponent implements OnInit {
 
   myChart!: BarInterface
 
-  //acá se puede hacer un arreglo  en lugar de ese objeto 
+
 
   addChart(myChart: BarInterface){
     this.myChart = myChart
- 
-    //acá también se puede hacer un push para agregar diferentes valores
+
   }
 
 }
