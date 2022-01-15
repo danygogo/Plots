@@ -79,11 +79,12 @@
                                 <th><button class = "infoButton" type="button" (click)="showDialog('table')"><i class="pi pi-info-circle"></i></button></th>
                             </tr>
                             <tr *ngFor="let item of xValues.controls; let j = index">
-                                <td >Point {{j + 1}}</td>
+                                <td class="tdPoint">Point {{j + 1}}</td>
                                 <td formArrayName = "xValues"><input type="number" class = "styleInput" [formControlName]="j" (keyup)="confirmInvalidTable()"></td>
                                 <td formArrayName = "yValues"><input type="number" class = "styleInput" [formControlName]="j" (keyup)="confirmInvalidTable()"></td>
                                 <td><button type = "button" class= "deleteButton" (click)="deleteRow(j)">Delete <i class="pi pi-minus-circle"></i></button></td>
                             </tr>
+  
                         </table>
                     </div>
                     <br>
@@ -111,88 +112,88 @@
 
 
                 <div class="row inputContainer">
-                    <div class="col-4">
+                    <div class="col-xl-4 col-6">
                         <label >Bar's color:</label>
                     </div>
-                    <div class="col-2">
+                    <div class="col-xl-2 col-3">
                         <input class= "colorInput" type="color" formControlName="dataSetColor">
                     </div>
-                    <div class="col-2">
+                    <div class="col-xl-2 col-3">
                         <button class = "infoButton" type="button" (click)="showDialog('barcolor')"><i class="pi pi-info-circle"></i></button>
                     </div>
-                    <div class="col">
+                    <div class="col-xl-4 col-12"> 
                     </div>
                 </div>
 
                 <div class="row inputContainer">
-                    <div class="col-4">
+                    <div class="col-xl-4 col-6">
                         <label >Text color for labels:</label>
                     </div>
-                    <div class="col-2">
+                    <div class="col-xl-2 col-3">
                         <input type="color" formControlName="textdataSetColor">
                     </div>
-                    <div class="col-2">
+                    <div class="col-xl-2 col-3">
                         <button class = "infoButton" type="button" (click)="showDialog('labelsTextColor')"><i class="pi pi-info-circle"></i></button>
                     </div>
-                    <div class="col">
+                    <div class="col-xl-4 col-12">
                     </div>
                 </div>
 
                 <div class="row inputContainer">
-                    <div class="col-4">
+                    <div class="col-xl-4 col-6">
                         <label >Labels' color on <i>x</i> axis:</label>
                     </div>
-                    <div class="col-2">
+                    <div class="col-xl-2 col-3">
                         <input type="color" formControlName="labelsXColor">
                     </div>
-                    <div class="col-2">
+                    <div class="col-xl-2 col-3">
                         <button class = "infoButton" type="button" (click)="showDialog('labelsXColor')"><i class="pi pi-info-circle"></i></button>
                     </div>
-                    <div class="col">
+                    <div class="col-xl-4 col-12">
                     </div>
                 </div>
 
                 <div class="row inputContainer">
-                    <div class="col-4">
+                    <div class="col-xl-4 col-6">
                         <label >Vertical lines' color:</label>
                     </div>
-                    <div class="col-2">
+                    <div class="col-xl-2 col-3">
                         <input type="color" formControlName="gridXColor">
                     </div>
-                    <div class="col-2">
+                    <div class="col-xl-2 col-3">
                         <button class = "infoButton" type="button" (click)="showDialog('verticalLines')"><i class="pi pi-info-circle"></i></button>
                     </div>
-                    <div class="col">
+                    <div class="col-xl-4 col-12">
                     </div>
                 </div>
 
                 <div class="row inputContainer">
-                    <div class="col-4">
+                    <div class="col-xl-4 col-6">
                         <label >Labels' color on <i>y</i> axis:</label>
                     </div>
-                    <div class="col-2">
+                    <div class="col-xl-2 col-3">
                         <input type="color" formControlName="labelsYColor">
                     </div>
-                    <div class="col-2">
+                    <div class="col-xl-2 col-3">
                         <button class = "infoButton" type="button" (click)="showDialog('labelsYColor')"><i class="pi pi-info-circle"></i></button>
                     </div>
-                    <div class="col">
+                    <div class="col-xl-4 col-12">
                     </div>
                 </div>
 
                 
 
                 <div class="row inputContainer">
-                    <div class="col-4">
+                    <div class="col-xl-4 col-6">
                         Horizontal lines' color:
                     </div>
-                    <div class="col-2">
+                    <div class="col-xl-2 col-3">
                         <input type="color" formControlName="gridYColor">
                     </div>
-                    <div class="col-2">
+                    <div class="col-xl-2 col-3">
                         <button class = "infoButton" type="button" (click)="showDialog('horizontalLines')"><i class="pi pi-info-circle"></i></button>
                     </div>
-                    <div class="col">
+                    <div class="col-xl-4 col-12">
                     </div>
                 </div>
                 

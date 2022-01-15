@@ -18,10 +18,10 @@ export class NewComponent implements OnInit {
   }
 
   myForm: FormGroup = this.fb.group({
-    email: ["jdoe@test.com", [Validators.required, Validators.email]],
-    password: [ "abcd1234", [Validators.required, Validators.minLength(8)]],
-    phone: [ "8888-9999", [Validators.required, Validators.minLength(9), Validators.pattern("^[0-9]{4}-[0-9]{4}$")]],
-    name: [ "User 2", [Validators.required, Validators.minLength(2)]]
+    email: [, [Validators.required, Validators.email]],
+    password: [, [Validators.required, Validators.minLength(8)]],
+    phone: [, [Validators.required, Validators.minLength(9), Validators.pattern("^[0-9]{4}-[0-9]{4}$")]],
+    name: [, [Validators.required, Validators.minLength(2)]]
   })
 
 

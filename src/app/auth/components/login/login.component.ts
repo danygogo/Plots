@@ -5,6 +5,7 @@ import { userInterface } from '../../interfaces/userInterface';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,8 +18,8 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   myForm: FormGroup = this.fb.group({
-    email: ["jdoe@test.com", [Validators.required, Validators.email]],
-    password: [ "abcd1234", [Validators.required, Validators.minLength(8)]]
+    email: [, [Validators.required, Validators.email]],
+    password: [, [Validators.required, Validators.minLength(8)]]
   })
 
   ngOnInit(): void {
@@ -58,6 +59,16 @@ export class LoginComponent implements OnInit {
 
   checkForm(field: string){
     return this.myForm.controls[field].errors && this.myForm.controls[field].touched
+  }
+
+  readme(){
+    Swal.fire(
+      {
+        title: "don't have an account?",
+        text: "This is a demo application, you can log in with using the email jsmith@gmail.com and password Abcd1234 or you can create your own account",
+        confirmButtonColor: '#DB592A'
+      })
+
   }
 
 }

@@ -4,7 +4,7 @@
 
 .downloadButton{
     
-    background-color: #098094;
+    background-color: #E07B28;
     border: none;
     height: 40px;
     color: white;
@@ -29,4 +29,12 @@
 
 .optionsContainer{
     margin-top: 20px;
+}
+
+@media screen and (max-width: 768px)
+{
+    .inputTable{
+        margin-left: 5px;
+    }
+
 }

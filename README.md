@@ -27,9 +27,3 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 
-colors
-#098094
-#42E4FF
-#24C5E0
-#944300
-#E07B28

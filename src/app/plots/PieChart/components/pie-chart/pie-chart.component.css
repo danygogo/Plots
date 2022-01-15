@@ -1,6 +1,6 @@
 .downloadButton{
     
-    background-color: #098094;
+    background-color: #E07B28;
     border: none;
     height: 40px;
     color: white;
@@ -26,3 +26,16 @@
 .optionsContainer{
     margin-top: 20px;
 }
+
+@media screen and (max-width: 768px) {
+    .charContainer{
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    .inputTable{
+        margin-left: 5px;
+    }
+ 
+}
+

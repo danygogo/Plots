@@ -28,7 +28,7 @@
 }
 
 .mainButton{
-    background-color: #42E4FF;
+    background-color: #E07B28;
     border: none;
     color: black;
     border-radius: 5px;
@@ -43,19 +43,21 @@
 }
 
 .deleteButton{
-    background-color: #42E4FF;
+    background-color: rgb(189, 0, 0);
     border: none;
     min-height: 30px;
-    color: black;
+    color: white;
     border-radius: 10px;
+    width: 80px
 }
 
 .addButton{
-    background-color: #098094;
+    background-color: #E07B28;
     border: none;
     height: 30px;
     color: white;
     border-radius: 10px;
+    margin-top: 5px;
 }
 
 table{
@@ -65,7 +67,7 @@ table{
 }
 
 .addRowContainer{
-    text-align: right;
+    text-align: center;
 }
 
 
@@ -74,7 +76,7 @@ table{
 }
 
 .applyButton{
-    background-color: #098094;
+    background-color: #E07B28;
     border: none;
     height: 40px;
     color: white;
@@ -88,3 +90,12 @@ table{
     padding-right: 40px;
 }
 
+
+@media screen and (max-width: 768px) {
+
+    .myReportContainer{
+        padding: 15px;
+
+    }
+
+}
