@@ -4,6 +4,10 @@ import { userInterface } from '../../interfaces/userInterface';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
+import { MessageService } from 'primeng/api';
+import { ValidatorsService } from '../../services/validators.service';
+
+
 
 @Component({
   selector: 'app-new',
@@ -12,10 +16,18 @@ import Swal from 'sweetalert2'
 })
 export class NewComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(private fb: FormBuilder, 
+              private authService: AuthService, 
+              private router: Router, 
+              private messageService: MessageService,
+              private vs: ValidatorsService
+              ) { }
 
   ngOnInit(): void {
   }
+
+  msg: string = "";
+  invalidFields: string[] = [];
 
   myForm: FormGroup = this.fb.group({
     email: [, [Validators.required, Validators.email]],
@@ -26,6 +38,7 @@ export class NewComponent implements OnInit {
 
 
   getUser(){
+
     if(this.myForm.valid){
       const user: userInterface = {
         email: this.myForm.controls.email.value,
@@ -54,8 +67,25 @@ export class NewComponent implements OnInit {
       
   }
 
-  checkForm(field: string){
-    return this.myForm.controls[field].errors && this.myForm.controls[field].touched
+
+  formChecking(field: string){
+    this.msg = this.vs.formChecking(this.myForm, field)
+    if(this.msg.length > 2){
+      this.showMsg()
+    }
   }
 
+  validateSubmit(){
+    this.msg = this.vs.validateSubmit(this.myForm)
+    if(this.msg.length > 2){
+      this.showMsg()
+    }
+  }
+
+  showMsg() {
+    this.messageService.add({key: 'tc', severity:'error',  detail: this.msg});
+  }
+
+
+  
 }

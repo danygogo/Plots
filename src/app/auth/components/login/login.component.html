@@ -14,25 +14,18 @@
 				<h1>Sign In Form</h1>
 				<form [formGroup]="myForm" (ngSubmit)="getUser()">
 					<p>E-mail</p>
-					<input type="text" formControlName = "email" placeholder="Your e-mail">
-					<p class="form-text text-danger" 
-                		*ngIf="checkForm('email')">
-                		Please write a valid e-mail
-            		</p>
+					<input type="text" formControlName = "email" placeholder="Your e-mail" (blur)="formChecking('email')">
 
 					<p>Password</p>
-					<input type="Password" formControlName = "password" placeholder="••••••••">
-					<p class="form-text text-danger" 
-                		*ngIf="checkForm('password')">
-                		A valid password is at least 8 characters long and only letters and numbers
-            		</p>
+					<input type="Password" formControlName = "password" placeholder="••••••••" (blur)="formChecking('password')">
 
-					<input type="submit" value="Sign In">
+					<input type="submit" value="Sign In" (click)="validateSubmit()">
 					<a href="auth/new">Create a new account</a>
 				</form>
 			</div>
 		</div>
 	</div>
+	<p-toast position="bottom-center" key="tc" baseZIndex.number="999999" ></p-toast>
 	<button class="readmeButton animate__animated animate__heartBeat animate__infinite" (click)="readme()">Read me!</button>
 </body>
 </html>

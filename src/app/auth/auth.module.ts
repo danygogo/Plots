@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NewComponent } from './components/new/new.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PrimeNgModule } from '../PrimeNgModule/prime-ng.module';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { PrimeNgModule } from '../PrimeNgModule/prime-ng.module';
     AuthComponent,
    
   ],
+  providers: [ MessageService ],
   imports: [
     CommonModule,
     AuthRoutingModule,
