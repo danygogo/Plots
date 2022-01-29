@@ -19,7 +19,7 @@
 }
 
 .infoButton{
-    background-color: #E07B28;
+    background-color: #0E2475;
     border: none;
     height: 30px;
     color: white;
@@ -28,7 +28,7 @@
 }
 
 .mainButton{
-    background-color: #E07B28;
+    background-color: #0E2475;
     border: none;
     color: black;
     border-radius: 5px;
@@ -52,7 +52,7 @@
 }
 
 .addButton{
-    background-color: #E07B28;
+    background-color: #0E2475;
     border: none;
     height: 30px;
     color: white;
@@ -76,7 +76,7 @@ table{
 }
 
 .applyButton{
-    background-color: #E07B28;
+    background-color: #0E2475;
     border: none;
     height: 40px;
     color: white;
