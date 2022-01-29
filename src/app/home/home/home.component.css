@@ -29,18 +29,31 @@ h1{
     margin: 0px;
 }
 
+
+
 .buttonContainer{
 
+    display: flex;
     position: fixed;
     z-index: 9999;
-    width: 100%;
-    text-align: center;
+    width: 80%;
+    left: 10%;
     top: 60%;
     color: black;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
 }
 
 
+p{
+    width: 40rem;
+}
 a{
+    width: 30rem;
+    display: inline;
     text-decoration: none;
     color: black;
     font-size: 2em;
@@ -51,7 +64,7 @@ a{
 }
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
     .buttonContainer{
         top: 70%;
     }
@@ -66,10 +79,20 @@ a{
 
     a{
         display: block;
+        width: 100%;
         font-size: 1.2em;
+        margin-left:0px ;
+        margin-right: 0px;
+    }
+
+    p{
+        display: none;
     }
 
     .buttonContainer{
         top: 60%;
+        flex-direction: column;
+        width: 100%;
+        left: 0%;
     }
 }

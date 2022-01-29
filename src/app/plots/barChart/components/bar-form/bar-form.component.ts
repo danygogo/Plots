@@ -49,7 +49,7 @@ export class BarFormComponent implements OnInit, OnChanges {
     
 
     //single values
-    dataSetColor: ["#24C5E0", Validators.required],
+    dataSetColor: ["#1C49EB", Validators.required],
     textdataSetColor: ["#000000", Validators.required],
     labelsXColor: ["#000000", Validators.required],
     gridXColor: ['#ebedef', Validators.required],
